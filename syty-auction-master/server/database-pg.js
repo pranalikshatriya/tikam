@@ -9,7 +9,7 @@ var pgp = require('pg-promise')(options);
 if (process.env.NODE_ENV === 'production')
 	pgp.pg.defaults.ssl = true;
 
-var db = pgp(process.env.DATABASE_URL || 'postgres://postgres:bibobeo@localhost:5432/tikam');
+var db = pgp(process.env.DATABASE_URL || 'postgres://postgres:Pranali123@localhost:5432/tikam');
 
 let sql = (file) => {
     const fullPath = path.join(__dirname, '/sql/', file);
