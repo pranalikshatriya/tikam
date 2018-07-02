@@ -252,10 +252,12 @@ button, div {
   height: 106em;
   position: absolute; 
   top:3.2em;
-
-  background: #2c3e50;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #ffffff; 
+  background: -webkit-linear-gradient(to top, #ffffff, #ffffff); 
+  background: linear-gradient(to top, #ffffff, #ffffff);
+  /*background: #2c3e50;  /* fallback for old browsers */
+  /*background: -webkit-linear-gradient(to top, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(to top, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
 }
 .stats-row {
   position: fixed;
@@ -382,7 +384,7 @@ button, div {
   animation: shining linear 0.2s;
   animation-iteration-count: 6;
 }
-.dummy{}
+.dummy { }
 @keyframes shining {
   0% { color: #0000ff }
   40% { color: #0000ff }
@@ -417,47 +419,57 @@ button, div {
 .slot-mask {
    text-decoration: none;
    color: #fff;
-   background-color: #538fbe;
-
+   /*background-color: #538fbe;*/
+   border: 3px solid #660666;
+   background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+   background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+   background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+   background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+   background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+   /*background-color: #ffffff;
    border: 1px solid #2d6898;
    background-image: linear-gradient(bottom, rgb(73,132,180) 0%, rgb(97,155,203) 100%);
    background-image: -o-linear-gradient(bottom, rgb(73,132,180) 0%, rgb(97,155,203) 100%);
    background-image: -moz-linear-gradient(bottom, rgb(73,132,180) 0%, rgb(97,155,203) 100%);
    background-image: -webkit-linear-gradient(bottom, rgb(73,132,180) 0%, rgb(97,155,203) 100%);
-   background-image: -ms-linear-gradient(bottom, rgb(73,132,180) 0%, rgb(97,155,203) 100%);
+   background-image: -ms-linear-gradient(bottom, rgb(73,132,180) 0%, rgb(97,155,203) 100%);*/
 
    background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
-    color-stop(0, rgb(73,132,180)),
-    color-stop(1, rgb(97,155,203))
+    color-stop(0, rgb(255, 255, 255)),
+    color-stop(1, rgb(255, 255, 255))
+   /* color-stop(0, rgb(73,132,180)),
+    color-stop(1, rgb(97,155,203))*/
     );
    -webkit-border-radius: 5px;
    -moz-border-radius: 5px;
    border-radius: 5px;
-   text-shadow: 0px -1px 0px rgba(0,0,0,.5);
+   /*text-shadow: 0px -1px 0px rgba(0,0,0,.5);
    -webkit-box-shadow: 0px 3px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
    -moz-box-shadow: 0px 3px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
-   box-shadow: 0px 3px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+   box-shadow: 0px 3px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);*/
 
 
    margin: 0.6em 0.2em;
 
  }
  .slot-mask:active {
-  background-image: linear-gradient(bottom, rgb(79,142,191) 0%, rgb(102,166,214) 100%);
+ /* background-image: linear-gradient(bottom, rgb(79,142,191) 0%, rgb(102,166,214) 100%);
   background-image: -o-linear-gradient(bottom, rgb(79,142,191) 0%, rgb(102,166,214) 100%);
   background-image: -moz-linear-gradient(bottom, rgb(79,142,191) 0%, rgb(102,166,214) 100%);
   background-image: -webkit-linear-gradient(bottom, rgb(79,142,191) 0%, rgb(102,166,214) 100%);
-  background-image: -ms-linear-gradient(bottom, rgb(79,142,191) 0%, rgb(102,166,214) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(79,142,191) 0%, rgb(102,166,214) 100%);*/
 
   background-image: -webkit-gradient(
     linear,
     left bottom,
-    left top,
-    color-stop(0, rgb(79,142,191)),
-    color-stop(1, rgb(102,166,214))
+    left top
+   /*color-stop(0, rgb(79,142,191)),
+    color-stop(1, rgb(102,166,214))*/
+    color-stop(0, rgb(102,0,102)),
+    color-stop(1, rgb(102,0,102))
     );
 }
 .slot-placeholder {
@@ -493,10 +505,12 @@ button, div {
   width: 1.7em;
   top: -0.7em;
   left: -0.4em;
-
+  
   text-align:  center;
-  color: #b98d1d;
+  font-size: 1.4em;
+  color:rgb(102, 0, 102);
 }
+
 .bidder-entry span {
   white-space: nowrap;
 }
@@ -507,16 +521,26 @@ button, div {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 0.2em 0;
   text-align: center;
 
   min-height: 3em;  
 }
+.slot-bid-container1 {
+  position: top;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 255);
+  padding: 0.2em 0;
+  text-align: center;
+
+  height: 1em;  
+}
 .slot-prize-icon {
   height: 6em;
   /*background-image: url("https://shou1dwe.github.io/i-am-rich-yo/images/box.png"); */
-  background-image: url("rainbow-cupcake.png"); 
+  background-image: url("gift.PNG"); 
   background-position: center;
   background-repeat: no-repeat;
   background-position: center;
@@ -528,17 +552,21 @@ button, div {
   margin-top: 0.7em;
 }
 .slot-bid {
+ 
 }
 .slot-bid span {
-  color: #fff0e1;
+  color: #ffffff;
   font-size: 1.4em;
 }
 .bidder-c {
   font-weight: bolder;
-  text-shadow: 1px 1px 6px rgba(150, 150, 150, 1);
+  color: #ffffff
+  
+  /*text-shadow: 1px 1px 6px rgba(150, 150, 150, 1);*/
 }
 .bidder-l {
-  color: #e22b2b;
+ /* color: #e22b2b;*/
+ color: #ffffff
 }
 .bidder-h {
   color: #ffd700;
@@ -552,7 +580,7 @@ button, div {
   #ff8fb5 0px 0px 35px, 
   rgb(255, 0, 222) 0px 0px 40px;
 }
-.slot-bidder-name-0 {}
+.slot-bidder-name-0 {font-size: 1.2em;}
 .slot-bidder-name-1 {font-size: 1.2em;}
 .slot-bidder-name-2 {font-size: 1.0em;}
 .slot-bidder-name-3 {font-size: 0.8em;}
@@ -563,18 +591,24 @@ button, div {
 }
 
 .slot-bidder {
-  color: #fff0e1;
+  color:#ffffff;
+  text-align: center;
+}
+.slot-bidder-name-color {
+  color:#ffffff;
   text-align: center;
 }
 .slot-placeholder img {
 }
 .slot-bid-empty {
   padding-top: 0.85em;
-  background: rgba(255, 254, 150, 0.77);
+  /*background: rgba(255, 254, 150, 0.77);*/
+  background: #fff08a;
   margin-bottom:0.45em;
 }
 .slot-bid-empty span {
-  color: rgba(46, 88, 121, 0.6);
+
+ color: rgb(102, 0, 102);
   animation: blinker 1.2s linear infinite;
 }
 
@@ -675,8 +709,8 @@ button, div {
     padding: 1em 0.2em 2em 0.4em;
   }
   .slot-corner {
-    font-size: 2.2em;
-    color: #655631;
+    font-size: 1.4em;
+    color: rgb(102,0,102);
     font-weight: bolder;
     left: 0.3em;
   }
@@ -684,11 +718,11 @@ button, div {
     background-size: 50% 100%;
   }
   .slot-bid {
-    font-size: 2em;
-    color: #ffffff;
+    font-size: 1.4em;
+    color: rgb(102,0,102);
     font-weight: bolder;
   }
-  .slot-bidder-name-1 {font-size: 2.5em;}
+  .slot-bidder-name-1 {font-size: 1.4em;}
   .slot-bidder-name-2 {font-size: 2.2em;}
   .slot-bidder-name-3 {font-size: 2.0em;}
   .slot-bidder-name-4 {font-size: 1.8em;}
@@ -698,16 +732,18 @@ button, div {
   .slot-bidder .bidder-entry {
     font-weight: bold;
     line-height: 1.1em;
+    color: #ffffff;
   }
 
   .slot-bid-empty {
     padding-top: 0em;
     margin-bottom: 0.45em;
-    font-size: 2.1em;
+    font-size: 1.4em;
     min-height: 0em;
   }
   .slot-container {
     width: 16.65%;
+    color: #ffffff
   }
   .block {
     height: 52em;
