@@ -35,10 +35,12 @@ const BidderNamePlate = (props) => {
   return (
       <span className={"bidder-entry slot-bidder-name-"+dynoSize(name, dyno)}>
         <span className={"bidder-c " + pick("bidder-l", "", "bidder-s")}>
-          {pick("♥ ", "💛 ", "🦄 ")}
+         <span className="slot-bidder-name-color"></span>
         </span>
         <span className={pick("", "bidder-h", "bidder-s")}>
+        <span className="slot-bidder-name-color">
           {name}
+        </span>
         </span>
       </span>
     )

@@ -19,8 +19,9 @@ export default class BiddingNumPad extends Component {
       this.modifyAmount = this.modifyAmount.bind(this);
   }
 
-  modifyAmount(inst, val) {
+  modifyAmount(inst, val) { 
     let old = this.props.input.value;
+    if ( this.props.input.value == 0) { old = 50}
     let newVal = 0;
     switch(inst) {
       case CAL_APPEND:
@@ -36,22 +37,59 @@ export default class BiddingNumPad extends Component {
         newVal = old < 100000000000 && (old + val) < 100000000000 ? old + val : old
         break;
     }
+    
     this.props.input.onChange(newVal);
   }
 
   render() {
-    const { value } = this.props.input
-    return (
+    
+    //const { value } = this.props.input  
+    let value = this.props.input.value 
+    if ( this.props.input.value == 0) {value = 50}
+   
+  
+      return (
+        <div className="row cal-row">
+          <div className="cal-display">
+          <span className="cal-display-text blinker">{Intl.NumberFormat().format(value)}</span>
+          </div>
+          <CalculatorButton w="24.75" displayText="+50" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 50)} />
+          <CalculatorButton w="24.75" displayText="+100" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 100)} />
+          <CalculatorButton w="24.75" displayText="+150" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 150)} />
+          <div style={{width: 1+'%', padding:"auto "+ 0.3+'em'}} ></div>
+  
+          <CalculatorButton w="24.75" className="cal-button-red" displayText="+200" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 200)} />
+          <div style={{width: 100+'%', padding:0.3+'em'}} ></div>
+        </div>
+      )
+  
+    /*  return (
+        <div className="row cal-row">
+          <div className="cal-display">
+          <span className="cal-display-text blinker">{Intl.NumberFormat().format(value)}</span>
+          </div>
+          <CalculatorButton w="24.75" displayText="+50" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 50)} />
+          <CalculatorButton w="24.75" displayText="+100" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 100)} />
+          <CalculatorButton w="24.75" displayText="+150" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 150)} />
+          <div style={{width: 1+'%', padding:"auto "+ 0.3+'em'}} ></div>
+  
+          <CalculatorButton w="24.75" className="cal-button-red" displayText="+200" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 200)} />
+          <div style={{width: 100+'%', padding:0.3+'em'}} ></div>
+        </div>
+      )
+        return (
       <div className="row cal-row">
-        <div className="cal-display"><span className="cal-display-text blinker">{Intl.NumberFormat().format(value)}</span></div>
+        <div className="cal-display">
+        <span className="cal-display-text blinker">{Intl.NumberFormat().format(50)}</span>
+        </div>
         <CalculatorButton w="24.75" displayText="+50" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 50)} />
         <CalculatorButton w="24.75" displayText="+100" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 100)} />
-        <CalculatorButton w="24.75" displayText="+200" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 200)} />
+        <CalculatorButton w="24.75" displayText="+150" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 150)} />
         <div style={{width: 1+'%', padding:"auto "+ 0.3+'em'}} ></div>
 
-        <CalculatorButton w="24.75" className="cal-button-red" displayText="+500" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 500)} />
+        <CalculatorButton w="24.75" className="cal-button-red" displayText="+200" onCalButtonClick={() => this.modifyAmount(CAL_INCREMENT, 200)} />
         <div style={{width: 100+'%', padding:0.3+'em'}} ></div>
       </div>
-    )
+    )*/
   }
 }
