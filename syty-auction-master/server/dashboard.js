@@ -310,8 +310,7 @@ let getUserInfo = userID =>
             userID: userID,
             firstName: user.first_name,
             lastName: user.last_name,
-            company: user.company,
-            table: user.table_number
+            company: user.company
         }));
 
 /* STUB */

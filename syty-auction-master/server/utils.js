@@ -25,7 +25,6 @@ let validateUserInfo = userInfo => {
         firstName: (userInfo && userInfo.firstName) || "",
         lastName: (userInfo && userInfo.lastName) || "",
         company: (userInfo && userInfo.company) || "",
-        table: (userInfo && userInfo.table) || "",
     };
 
     let error; 
@@ -35,8 +34,6 @@ let validateUserInfo = userInfo => {
         error = 'Last name is empty';
     else if (!content.company)
         error = 'Company is empty';
-    else if (!content.table || isNaN(content.table))
-        error = 'Table number is invalid';
 
     content.error = error;
     content.isValid = typeof error === 'undefined';
@@ -51,8 +48,7 @@ let generateUserID = (userInfo) => {
     	encode().value(JSON.stringify({
         	firstName: userInfo.firstName.toLowerCase(),
 	        lastName: userInfo.lastName.toLowerCase(),
-	        company: userInfo.company.toLowerCase(),
-	        table: userInfo.table
+	        company: userInfo.company.toLowerCase()
 	    })).toString();
     userInfo.userID = userID;
 };

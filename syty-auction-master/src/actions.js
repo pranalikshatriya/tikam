@@ -78,14 +78,13 @@ export const expandLogin = () => ({
   type: LOGIN_EXPAND
 })
 
-export function fetchLogin(firstName, lastName, company, table) {
+export function fetchLogin(firstName, lastName, company) {
   return dispatch => {
     dispatch(loginRequested())
     return basePost(`login`, {
                   firstName:firstName,
                   lastName:lastName,
-                  company:company,
-                  table:table
+                  company:company
                 })
       .then(response => response.ok ?
         response.text().then(token => dispatch(loginSuccess(token)))
@@ -125,11 +124,11 @@ export function fetchBid(slot, bid) {
   }
 }
 
-export function fetchAdminBid(firstName, lastName, company, table, slot, bid) {
+export function fetchAdminBid(firstName, lastName, company, slot, bid) {
   let opID = slot + "-" + bid + "-" + Math.random()
   return dispatch => {
     dispatch(bidRequested(opID))
-    return basePost(`adminSubmit`, {firstName, lastName, company, table, bid, slot})
+    return basePost(`adminSubmit`, {firstName, lastName, company, bid, slot})
       .then(response => response.ok ?
         dispatch(bidSuccess(opID, slot, bid)) : 
         response.text().then(msg => dispatch(bidFail(opID, msg)))

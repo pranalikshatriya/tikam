@@ -14,7 +14,6 @@ exports.initialize = () =>
 				first_name TEXT NOT NULL,
 				last_name TEXT NOT NULL,
 				company TEXT,
-				table_number INTEGER NOT NULL,
 				permission INTERGER NOT NULL
 			)`
 		))
@@ -60,14 +59,14 @@ exports.initialize = () =>
 			.then(stmt => allSlotsQueryStmt = stmt);
 
 			db.prepare(`
-				SELECT user_id, first_name, last_name, company, table_number, permission
+				SELECT user_id, first_name, last_name, company,  permission
 				FROM users
 				WHERE user_id = ?
 				`)
 			.then(stmt => userQueryStmt = stmt);
 
 			db.prepare(`
-				SELECT u.user_id, u.first_name, u.last_name, u.company, u.table_number, u.permission, COALESCE(s.count_bid, 0) AS count_bid
+				SELECT u.user_id, u.first_name, u.last_name, u.company, u.permission, COALESCE(s.count_bid, 0) AS count_bid
 				FROM
 					users u
 					LEFT OUTER JOIN
@@ -133,8 +132,8 @@ exports.createUser = userInfo =>
 			userInfo.userID,
 			userInfo.firstName,
 			userInfo.lastName,
-			userInfo.company,
-			userInfo.table));
+			userInfo.company
+		));
 exports.toggleUserPermission = userID =>
 	Promise.resolve(toggleUserStmt.run(userID));
 exports.nukeUsers = () =>

@@ -3,6 +3,5 @@ CREATE TABLE IF NOT EXISTS users (
 	first_name TEXT NOT NULL,
 	last_name TEXT NOT NULL,
 	company TEXT,
-	table_number INTEGER NOT NULL,
 	permission BOOLEAN NOT NULL DEFAULT TRUE
 )
