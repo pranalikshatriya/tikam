@@ -5,6 +5,3 @@ The game consists a board of numbers, each has a hidden prize behind. It could b
 
 This project is created to facilitate Citibank Singapore's Charity Golf event in 2017.
 It will be available temporary on [Heroku](https://citi-charity-golf.herokuapp.com)
-
-
-ADD SOMETHING FOR TESTING
