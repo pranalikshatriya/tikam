@@ -1,6 +1,8 @@
 import React from 'react' ; 
 import { Component } from 'react' ;
 import Checkbox from './Checkbox';
+import MyClass from './MyModule'
+
 
 var  closedbiditems =[
   { key: "Slot 1", value: false },
@@ -69,15 +71,15 @@ const items = [
     'Slot 29',
     'Slot 30'
   ];
-
-
-
+  
+  
+ 
   class Application extends Component {
-
    
-
+    
   componentDidMount  = () => {
     this.selectedCheckboxes = new Set();
+    
   }
 
   toggleCheckbox = label => {
@@ -99,16 +101,12 @@ const items = [
     formSubmitEvent.preventDefault();
     closedbiditems.forEach(element => {  
     });  
-
-  
-  console.log("closed bid items",closedbiditems)
-  let props = closedbiditems
-
+   console.log("closed bid items",closedbiditems)
+   
+   MyClass.someData = 100;
+ }
  
-
-
-  }
-
+ 
   // create a map of slot and seal here
 
   createCheckbox = label => (
@@ -134,11 +132,9 @@ const items = [
 
             <form onSubmit={this.handleFormSubmit}>
               {this.createCheckboxes()}
-
-              <button className="btn btn-default" type="submit">Disable Slot</button>
-              
+              <button className="btn btn-default" type="submit">Disable Slot</button>  
             </form>
-
+           
           </div>
         </div>
       </div>
@@ -147,7 +143,7 @@ const items = [
 } 
 
 
-export default (Application);
+export default ( Application);
  
 
 
