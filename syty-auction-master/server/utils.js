@@ -24,19 +24,35 @@ let validateUserInfo = userInfo => {
 	let content = {
         firstName: (userInfo && userInfo.firstName) || "",
         lastName: (userInfo && userInfo.lastName) || "",
-        company: (userInfo && userInfo.company) || "",
+        company: (userInfo && userInfo.company) || ""
     };
 
-    let error; 
-    if (!content.firstName)
+    let error;
+
+    content.isValid = typeof error === 'undefined';
+
+    if (!content.firstName) 
         error = 'First name is empty';
     else if (!content.lastName)
         error = 'Last name is empty';
     else if (!content.company)
         error = 'Company is empty';
+    else {
+        console.log("The firstName, lastName, company: ", content.firstName, content.lastName, content.company);
+        var reportPromise = database.reportUser(content.firstName, content.lastName, content.company);
+        reportPromise.then(function(value) {
+            console.log("The existing user is: " + value);
+            if(value) {
+                console.error("The user already exists!");
+                error = 'The user alredy exists!';
+                content.isValid = false;
+            }
+        });
+    }
 
     content.error = error;
-    content.isValid = typeof error === 'undefined';
+
+    console.log("content isValid value: " + content.isValid);
 
     if (content.isValid)
     	generateUserID(content);
