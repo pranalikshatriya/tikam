@@ -24,7 +24,7 @@ class BiddingForm extends React.Component {
         </div>
         <br/>
         <div className="interaction-footer">
-          <button type="submit" disabled={pristine || bidRequested}>Submit</button>
+          <button type="submit" >Submit</button>
         </div>
       </form>
     );

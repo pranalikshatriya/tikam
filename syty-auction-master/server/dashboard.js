@@ -159,7 +159,7 @@ let buildSlotInfoSnapshot = () =>
 let buildEventSnapshot = (size) =>
     database
         .getRecentBiddings(size)
-        .map(event => buildEventUpdate(event.bid_id, event.user_id, event.slot, event.bid));
+        .map(event => buildEventUpdate(event.bid_id, event.user_id, event.slot, event.bid, event.biddingclosed));
 
 let validateUserPermission = (authValidationResult) => {
     if (!authValidationResult.isValid)
@@ -227,16 +227,16 @@ let executeUpdate = (submissionResult, io) => {
         return;
 
     console.log('Sending live update after Bidding', submissionResult);
-    buildUpdate(submissionResult.bidID, submissionResult.userID, submissionResult.slot, submissionResult.bid)
+    buildUpdate(submissionResult.bidID, submissionResult.userID, submissionResult.slot, submissionResult.bid, submissionResult.biddingclosed)
         .then(updateJson => JSON.stringify(updateJson))
         .then(update => io.sockets.emit('data', update));
 };
 
-let buildUpdate = (bidID, userID, slot, bid) =>
+let buildUpdate = (bidID, userID, slot, bid, biddingclosed) =>
     Promise
         .join(
             buildSlotInfoUpdate(slot),
-            buildEventUpdate(bidID, userID, slot, bid),
+            buildEventUpdate(bidID, userID, slot, bid, biddingclosed),
             (slotInfoUpdate, eventUpdate) => ({ slots: [slotInfoUpdate], events: [eventUpdate], isLiveUpdate: true })
         );
 
@@ -250,6 +250,7 @@ let buildSlotInfoUpdate = slot =>
         });
 
 let parseSlotInfo = slotInfo => {
+    
     let index = parseInt(slotInfo.slot) - 1;
     if (slotInfo.bid > 0) {
         return Promise
@@ -257,7 +258,7 @@ let parseSlotInfo = slotInfo => {
                     .then(bidInfos => {
                         if (typeof bidInfos === 'string')
                             return JSON.parse(bidInfos);
-                        return bidInfos;
+                            return bidInfos;
                     })
                     .then(bidInfos => {
                         var distinctUserBids = {};
@@ -265,13 +266,14 @@ let parseSlotInfo = slotInfo => {
                             var userBid = distinctUserBids[bidInfo.user_id] = distinctUserBids[bidInfo.user_id] || {};
                             userBid.bidID = bidInfo.bid_id;
                             userBid.bidTS = bidInfo.added_ts;
+                            userBid.biddingclosed = bidInfo.biddingclosed
                         })
                         return distinctUserBids;
                     })
                     .then(distinctUserBids => {
                         var flatUserBids = [];
                         for (var userID in distinctUserBids) {
-                            flatUserBids.push({ user_id: userID, bid_id: distinctUserBids[userID].bidID, added_ts: distinctUserBids[userID].bidTS });
+                            flatUserBids.push({ user_id: userID, bid_id: distinctUserBids[userID].bidID, added_ts: distinctUserBids[userID].bidTS, biddingclosed: distinctUserBids[userID].biddingclosed });
                         }
                         return flatUserBids;
                     })
@@ -282,6 +284,7 @@ let parseSlotInfo = slotInfo => {
                                     .then(userInfo => {
                                         userInfo.bidID = bidInfo.bid_id;
                                         userInfo.bidTS = bidInfo.added_ts;
+                                        userInfo.biddingclosed = bidInfo.biddingclosed
                                         return userInfo;
                                     });
                     })
@@ -289,18 +292,21 @@ let parseSlotInfo = slotInfo => {
                         index: index,
                         highestBid: slotInfo.bid,
                         highestBidders: userInfo
+                        
                     }));
     }
+   
     return { index: index };
 };
 
-let buildEventUpdate = (bidID, userID, slot, bid) =>
+let buildEventUpdate = (bidID, userID, slot, bid, biddingclosed) =>
     getUserInfo(userID)
         .then(userInfo => ({
             slot: slot,
             bid: bid,
             bidder: userInfo,
-            index: bidID
+            index: bidID,
+            biddingclosed: biddingclosed
         }));
 
 let getUserInfo = userID =>
@@ -326,6 +332,7 @@ const getRandomName = () => nameArray[getRandomInt(0,nameArray.length-1)]
 const stubSlots = new Array(30)
 
 function getStubSlotUpdate() {
+    
   let index = getRandomInt(0,25);
   let cur = stubSlots[index] || {
     index: index,
@@ -350,7 +357,8 @@ function getStubEventUpdates() {
     "bidder": { firstName: getRandomName() },
     "bid": getRandomArbitrary(1, 100),
     "index": utils.uuid(),
-    "slot": getRandomInt(3,25)
+    "slot": getRandomInt(3,25),
+    "biddingclosed": false
   }
 }
 

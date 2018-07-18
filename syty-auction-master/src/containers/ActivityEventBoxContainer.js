@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state, ownProps) => {
   const { activityEvents } = state
-
+  
   return {
+    
   	activityEvents
   }
 }

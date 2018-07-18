@@ -99,11 +99,12 @@ const slots = (state = {
   top: []
 }, action) => {
     let newState;
+    
     switch (action.type) {
       case WS_MESSAGE_RECEIVED:
         if(action.slots && action.slots.length) {
           newState = {};
-
+       
           newState.slots = state.slots.map(i => Object.assign({}, i, {hasChange: false}))
           if(action.isLiveUpdate) {
             action.slots.forEach(s => s.hasChange = true)
@@ -121,6 +122,7 @@ const slots = (state = {
             if(!newState.bidders[thisUserID])
                newState.bidders[thisUserID] = Object.assign({}, slot.highestBidders[0], {sum: 0})
             let bidder = newState.bidders[thisUserID]
+           
             if(bidder.bidTS || bidder.bidTS > slot.highestBidders[0].bidTS)
               bidder.bidTS = slot.highestBidders[0].bidTS
 

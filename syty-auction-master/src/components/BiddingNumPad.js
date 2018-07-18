@@ -23,6 +23,7 @@ export default class BiddingNumPad extends Component {
     let old = this.props.input.value;
     if ( this.props.input.value == 0) { old = 50}
     let newVal = 0;
+    
     switch(inst) {
       case CAL_APPEND:
         newVal = old < 100000000000 ? old * 10 + val : old;

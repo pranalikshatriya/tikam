@@ -559,27 +559,19 @@ button, div {
   background-repeat: no-repeat;
   background-position: center;
   background-repeat: no-repeat;
-  -webkit-background-size: 55% 88%;
-  -moz-background-size: 55% 88%;
-  -o-background-size: 55% 88%;
-  background-size: 55% 88%;
+  -webkit-background-size: 55% 90%;
+  -moz-background-size: 55% 90%;
+  -o-background-size: 55% 90%;
+  background-size: 55% 90%;
   margin-top: 0.7em;
  
 }
 
-.slot-prize-icon-sold {
-  height: 6em;
-  background-image: url("gift3open.png"); 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-background-size: 55% 88%;
-  -moz-background-size: 55% 88%;
-  -o-background-size: 55% 88%;
-  background-size: 55% 88%;
-  margin-top: 0.7em;
-  visibility: hidden;
+.slot-prize-given {
+  height: 8.7em;
+  background-image: url("given.PNG");
+   
+
  
 }
 

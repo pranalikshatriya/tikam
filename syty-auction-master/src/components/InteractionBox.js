@@ -1,10 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { closeInteractionBox } from '../actions'
-import Application from '../components/Application'
-
-import MyClass from './MyModule'
-console.log(MyClass.someData);
 
 
 function mapStateToProps(state, ownProps) {
@@ -21,18 +17,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-const InteractionBox = ({bodyComponent, title, handleClose,bidclosed}) => {
-  console.log("bid status", Application.myObj);
- //getbidstatus("Slot 1")
- //bidclosed = newobj.getbidstatus(title);
-  /*dataobj.forEach(element => {
-    
-    if(element.key == title){ bidclosed = element.value}
-  });*/
- 
-
- if(bidclosed){ return null;}
- else{
+const InteractionBox = ({bodyComponent, title, handleClose}) => {
   return (
     
     <div className="interaction-container">
@@ -44,7 +29,7 @@ const InteractionBox = ({bodyComponent, title, handleClose,bidclosed}) => {
      
     </div>
   )}
-}
+
 
 
 export default connect(
