@@ -15,7 +15,6 @@ function mapDispatchToProps() {
                   values.firstName,
                   values.lastName,
                   values.company,
-                  values.table,
                   values.slot,
                   values.amount));
     }

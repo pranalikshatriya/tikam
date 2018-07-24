@@ -25,7 +25,6 @@ scenarios:
                 firstName: "{{ firstName }}"
                 lastName: "{{ lastName }}"
                 company: "{{ company }}"
-                table: "{{ table }}"
                 slot: "{{ slot }}"
                 bid: "{{ bid }}"
           - think: 5

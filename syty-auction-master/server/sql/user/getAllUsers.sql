@@ -1,4 +1,4 @@
-SELECT u.user_id, u.first_name, u.last_name, u.company, u.table_number, u.permission, COALESCE(s.count_bid, 0) AS count_bid
+SELECT u.user_id, u.first_name, u.last_name, u.company, u.permission, COALESCE(s.count_bid, 0) AS count_bid
 FROM
 	users u
 	LEFT OUTER JOIN
