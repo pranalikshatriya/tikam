@@ -3,6 +3,9 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
 
+
+if(document.getElementById('root')){
+
 render(
 	  <AppContainer>
 	<Root />
@@ -22,3 +25,8 @@ if (module.hot) {
     );
   });
 }
+}
+
+
+
+

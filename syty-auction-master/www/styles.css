@@ -384,7 +384,7 @@ button, div {
   animation: shining linear 0.2s;
   animation-iteration-count: 6;
 }
-.dummy { }
+.dummy {  }
 @keyframes shining {
   0% { color: #0000ff }
   40% { color: #0000ff }
@@ -521,7 +521,7 @@ button, div {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 0.2em 0;
   text-align: center;
 
@@ -540,7 +540,7 @@ button, div {
 .slot-prize-icon {
   height: 6em;
   /*background-image: url("https://shou1dwe.github.io/i-am-rich-yo/images/box.png"); */
-  background-image: url("gift.PNG"); 
+  background-image: url("gift3.PNG"); 
   background-position: center;
   background-repeat: no-repeat;
   background-position: center;
@@ -551,13 +551,40 @@ button, div {
   background-size: 65% 88%;
   margin-top: 0.7em;
 }
-.slot-bid {
+
+.slot-prize-icon-open {
+  height: 6em;
+  background-image: url("gift3open.png"); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: 55% 90%;
+  -moz-background-size: 55% 90%;
+  -o-background-size: 55% 90%;
+  background-size: 55% 90%;
+  margin-top: 0.7em;
  
 }
-.slot-bid span {
-  color: #ffffff;
-  font-size: 1.4em;
+
+.slot-prize-given {
+  height: 8.7em;
+  background-image: url("given.PNG");
+   
+
+ 
 }
+
+.slot-bid {
+  color: #ffffff;
+  text-align: center;
+}
+.slot-bid span {
+  color:#ffffff;
+  text-align: center;
+  font-size: 1.2em;
+}
+
 .bidder-c {
   font-weight: bolder;
   color: #ffffff
@@ -591,7 +618,7 @@ button, div {
 }
 
 .slot-bidder {
-  color:#ffffff;
+  color:rgb(102,0,102);
   text-align: center;
 }
 .slot-bidder-name-color {

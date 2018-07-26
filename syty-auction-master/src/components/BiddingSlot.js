@@ -2,13 +2,15 @@ import React from 'react'
 import AnimateOnChange from 'react-animate-on-change'
 import BidderNamePlateContainer from '../containers/BidderNamePlateContainer'
 
-const BiddingSlot = ({index, hasChange, bid = typeof bid !== 'undefined' ? bid : 50 , bidders, onSlotClick}) => {
+
+const BiddingSlot = ({index, hasChange, bid = typeof bid !== 'undefined' ? bid : 50 , bidders, onSlotClick }) => {
+   
 	return (
 
-			<div className="slot-container" onClick={onSlotClick}>
- 
+			<div className="slot-container" onClick={onSlotClick} >
+        
         <div className="slot-placeholder  slot-mask">
-        { bid==50 && 
+        { !bidders[0] &&
             <div className="slot-bid-container1 slot-bid-empty"><span>Bid Now</span></div>
                  }
                  <AnimateOnChange 
@@ -20,9 +22,23 @@ const BiddingSlot = ({index, hasChange, bid = typeof bid !== 'undefined' ? bid :
         <div className="slot-corner" >{index + 1}
        
         </div>
+      
+        
+        { !bidders[0] && 
         <div className="slot-prize-icon">&nbsp;
        
-        </div>
+        </div>}
+
+        { bidders[0] && !bidders[0].biddingclosed &&
+        <div className="slot-prize-icon-open">&nbsp;
+       
+        </div>}
+
+        { bidders[0] && bidders[0].biddingclosed &&
+        <div className="slot-prize-given">&nbsp;
+       
+        </div>}
+               
        
           {bid && 
             <div className="slot-bid-container" >

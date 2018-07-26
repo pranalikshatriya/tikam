@@ -2,6 +2,7 @@ import React from 'react'
 import ActivityEvent from './ActivityEvent'
 
 const ActivityEventBox = ({activityEvents}) => {
+ 
 	return (
  		<div className="header-row">
       <div className="header-row-icon"><span>Bidding Feed</span>Status</div>
@@ -9,6 +10,7 @@ const ActivityEventBox = ({activityEvents}) => {
           <div className="activities">
             {
               activityEvents.map((entry, key) => 
+              
                 entry && entry.bidder && <ActivityEvent key={key} entry={entry}/>)
             }
           </div>
