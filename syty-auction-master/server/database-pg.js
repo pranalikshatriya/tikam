@@ -36,6 +36,8 @@ let sqlGetAllSlotsInfo = sql('summary/getAllSlotsInfo.sql');
 let sqlGetUserBiddings = sql('summary/getUserBiddings.sql');
 
 let sqlCreateTableBiddingstatus = sql('bidding/createTableBiddingstatus.sql');
+let sqlCreateViewDisplayData = sql('bidding/createviewdisplaydata.sql');
+let sqlInsertDefaultData = sql('bidding/InsertintoBiddingStatus.sql');
 exports.initialize = () =>
 	Promise
 		.resolve()
@@ -46,6 +48,10 @@ exports.initialize = () =>
 		.then(() => console.log("Created table Biddings"))
 		.then(() => db.none(sqlCreateTableBiddingstatus))
 		.then(() => console.log("Created table Bidding status"))
+		.then(() => db.none(sqlCreateViewDisplayData))
+		.then(() => console.log("Created view display data"))
+		.then(() => db.none(sqlInsertDefaultData))
+		.then(() => console.log("Default Data Inserted"))
 		.then(() => console.log("Database initialization completed"))
 		.catch(err => console.error(err.stack));
 

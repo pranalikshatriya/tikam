@@ -5,7 +5,7 @@ const ActivityEventBox = ({activityEvents}) => {
  
 	return (
  		<div className="header-row">
-      <div className="header-row-icon"><span>Bidding Feed</span>Status</div>
+      <div className="header-row-icon"><span></span>Status</div>
         <div className="header-row-activity">
           <div className="activities">
             {
