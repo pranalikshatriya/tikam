@@ -26,12 +26,6 @@ const AdminBiddingForm = props => {
         </div>
       </div>
       <div>
-        <label>Table</label>
-        <div>
-          <Field className="admin-field" name="table" component="input" type="number" placeholder="Table Number"/>
-        </div>
-      </div>
-      <div>
         <label>Slot</label>
         <div>
           <Field className="admin-field" name="slot" component="input" type="number" placeholder="Slot #"/>

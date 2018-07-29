@@ -17,13 +17,11 @@ function mapDispatchToProps() {
         dispatch(loginFail("Last Name is required"))
       else if(!values.company)
         dispatch(loginFail("Company is required"))
-      else if(!values.table)
-        dispatch(loginFail("Table number is required"))
       else 
     	  dispatch(fetchLogin(values.firstName, 
           values.lastName,
-          values.company,
-          values.table));
+          values.company
+        ));
     }
   };
 }

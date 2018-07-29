@@ -31,7 +31,10 @@ let executeLogin = (authValidationResult, userInfo, response, cookiesExpiration)
             .createUserIfRequired(userInfoValidationResult)
             .then(userCreationResult => {
                 console.log('Login result for User', userCreationResult);
-                if (userCreationResult.isValid) {
+                if (userCreationResult.error === 'User alreday exists!') {
+                    response.status(400).send('failed to login, the user already exists!');
+                }
+                else if (userCreationResult.isValid) {
                     let expiry = new Date(Date.now() + cookiesExpiration);
                     response.cookie('sytyAuth', userCreationResult.userID, { expires: expiry });
                     response.status(200).send(userCreationResult.userID);
