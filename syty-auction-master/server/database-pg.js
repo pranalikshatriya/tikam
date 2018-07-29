@@ -19,6 +19,7 @@ let sql = (file) => {
 let sqlCreateTableUsers = sql('user/createTableUsers.sql');
 let sqlGetUser = sql('user/getUser.sql');
 let sqlGetAllUsers = sql('user/getAllUsers.sql');
+let sqlReportUser = sql('user/reportUser.sql');
 let sqlCreateUser = sql('user/createUser.sql');
 let sqlToggleUserPermission = sql('user/toggleUserPermission.sql');
 let sqlDeleteAllUsers = sql('user/nukeUsers.sql');
@@ -57,6 +58,8 @@ exports.initialize = () =>
 
 exports.getUser = userID => db.one(sqlGetUser, { userID: userID });
 exports.getAllUsers = () => db.any(sqlGetAllUsers);
+//report existing user
+exports.reportUser = (firstName, lastName, company) => db.oneOrNone(sqlReportUser, { firstName: firstName, lastName: lastName, company: company});
 exports.createUser = userInfo => db.none(sqlCreateUser, userInfo);
 exports.toggleUserPermission = userID => db.none(sqlToggleUserPermission, { userID: userID });
 exports.nukeUsers = () => db.none(sqlDeleteAllUsers);

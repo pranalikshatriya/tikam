@@ -15,9 +15,6 @@ const LoginForm = props => {
       <Field name="company" component={RenderedInput} type="text" 
           label="Company *"
           placeholder="Company"/>
-      <Field name="table" component={RenderedNumberInput} type="number" step={1} pattern={"\\d*"}  
-          label="Table *"
-          placeholder="Table Number"/>
       <br/>
       <div className="interaction-footer">
         <button type="submit" disabled={pristine || loginRequested}>Start Bidding!</button>
