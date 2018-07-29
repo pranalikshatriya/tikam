@@ -48,7 +48,7 @@ let validateUserInfo = userInfo => {
                 content.isValid = false;
                 content.error = 'User alreday exists!';
             }
-         });
+        });
     }
 
     content.error = error;
