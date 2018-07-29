@@ -46,6 +46,7 @@ let validateUserInfo = userInfo => {
                 console.error("The user already exists!");
                 error = 'The user alredy exists!';
                 content.isValid = false;
+                content.error = 'User alreday exists!';
             }
         });
     }
