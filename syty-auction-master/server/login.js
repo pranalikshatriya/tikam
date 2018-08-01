@@ -6,11 +6,11 @@ exports.setApp = app => {
         utils
             .checkAuth(request.cookies.sytyAuth)
             .then(authValidationResult =>
-                    executeLogin(
-                        authValidationResult,
-                        request.body,
-                        response,
-                        process.env.COOKIES_EXPIRATION || app.locals.cookiesExpiration));
+                executeLogin(
+                    authValidationResult,
+                    request.body,
+                    response,
+                    process.env.COOKIES_EXPIRATION || app.locals.cookiesExpiration));
     });
 
     app.get('/logout', (request, response) => {
@@ -26,22 +26,35 @@ let executeLogin = (authValidationResult, userInfo, response, cookiesExpiration)
             response.status(400).send(userInfoValidationResult.error);
             return;
         }
-
-        utils
-            .createUserIfRequired(userInfoValidationResult)
-            .then(userCreationResult => {
-                console.log('Login result for User', userCreationResult);
-                if (userCreationResult.error === 'User alreday exists!') {
-                    response.status(400).send('failed to login, the user already exists!');
+        else if (userInfo) {
+            console.log("The firstName, lastName, company: ", userInfo.firstName, userInfo.lastName, userInfo.company);
+            var reportPromise = database.reportUser(userInfo.firstName, userInfo.lastName, userInfo.company);
+            reportPromise.then(function (value) {
+                console.log("The existing user is: " + value);
+                if (value) {
+                    console.error("The user already exists!");
+                    error = 'The user alredy exists!';
+                    userInfo.isValid = false;
+                    userInfo.error = 'User alreday exists!';
+                    response.status(400).send('failed to login - the user already exists!');
+                    return;
                 }
-                else if (userCreationResult.isValid) {
-                    let expiry = new Date(Date.now() + cookiesExpiration);
-                    response.cookie('sytyAuth', userCreationResult.userID, { expires: expiry });
-                    response.status(200).send(userCreationResult.userID);
-                } else {
-                    response.status(400).send('Failed to login');
+                else {
+                    utils
+                        .createUserIfRequired(userInfoValidationResult)
+                        .then(userCreationResult => {
+                            console.log('Login result for User', userCreationResult);
+                            if (userCreationResult.isValid) {
+                                let expiry = new Date(Date.now() + cookiesExpiration);
+                                response.cookie('sytyAuth', userCreationResult.userID, { expires: expiry });
+                                response.status(200).send(userCreationResult.userID);
+                            } else {
+                                response.status(400).send('Failed to login');
+                            }
+                        });
                 }
             });
+        }
     }
     else {
         response.status(200).send('User already logged in')
