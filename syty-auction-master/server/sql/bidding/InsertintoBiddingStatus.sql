@@ -28,8 +28,10 @@ INSERT INTO biddingstatus (slot, biddingclosed) values
  (27, FALSE),
  (28, FALSE),
  (29, FALSE),
- (30, FALSE)
-
-
-
-
+ (30, FALSE),
+ (31, FALSE),
+ (32, FALSE),
+ (33, FALSE),
+ (34, FALSE),
+ (35, FALSE),
+ (36, FALSE)
