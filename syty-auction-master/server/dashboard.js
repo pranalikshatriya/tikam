@@ -328,7 +328,7 @@ const nameArray = ["Darwin", "Paris", "Jackie", "Dominick", "Abel", "Nelson", "J
 // const nameArray = ["M", "MM", "WWW", "WWWW", "WWWWW", "WWWWWW", "WWWWWWW", "WWWWWWWW", "WWWWWWWWW", "WWWWWWWWWW", "WWWWWWWWWWW", "WWWWWWWWWWWW", "WWWWWWWWWWWWW", "WWWWWWWWWWWWWW"]
 const getRandomName = () => nameArray[getRandomInt(0,nameArray.length-1)]
 
-const stubSlots = new Array(35)
+const stubSlots = new Array(36)
 
 function getStubSlotUpdate() {
     

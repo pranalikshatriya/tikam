@@ -391,9 +391,84 @@ UNION
   WHERE biddings.slot = 30
   ORDER BY biddings.bid DESC
  LIMIT 1)
-
+ UNION
+( SELECT users.first_name,
+    users.last_name,
+    users.company,
+    biddings.bid,
+    biddings.slot,
+    biddingstatus.biddingclosed
+   FROM users
+     JOIN biddings ON users.user_id = biddings.user_id
+     JOIN biddingstatus ON biddings.slot = biddingstatus.slot
+  WHERE biddings.slot = 31
+  ORDER BY biddings.bid DESC
+ LIMIT 1)
+ UNION
+( SELECT users.first_name,
+    users.last_name,
+    users.company,
+    biddings.bid,
+    biddings.slot,
+    biddingstatus.biddingclosed
+   FROM users
+     JOIN biddings ON users.user_id = biddings.user_id
+     JOIN biddingstatus ON biddings.slot = biddingstatus.slot
+  WHERE biddings.slot = 32
+  ORDER BY biddings.bid DESC
+ LIMIT 1)
+ UNION
+( SELECT users.first_name,
+    users.last_name,
+    users.company,
+    biddings.bid,
+    biddings.slot,
+    biddingstatus.biddingclosed
+   FROM users
+     JOIN biddings ON users.user_id = biddings.user_id
+     JOIN biddingstatus ON biddings.slot = biddingstatus.slot
+  WHERE biddings.slot = 33
+  ORDER BY biddings.bid DESC
+ LIMIT 1)
+ UNION
+( SELECT users.first_name,
+    users.last_name,
+    users.company,
+    biddings.bid,
+    biddings.slot,
+    biddingstatus.biddingclosed
+   FROM users
+     JOIN biddings ON users.user_id = biddings.user_id
+     JOIN biddingstatus ON biddings.slot = biddingstatus.slot
+  WHERE biddings.slot = 34
+  ORDER BY biddings.bid DESC
+ LIMIT 1)
+UNION
+( SELECT users.first_name,
+    users.last_name,
+    users.company,
+    biddings.bid,
+    biddings.slot,
+    biddingstatus.biddingclosed
+   FROM users
+     JOIN biddings ON users.user_id = biddings.user_id
+     JOIN biddingstatus ON biddings.slot = biddingstatus.slot
+  WHERE biddings.slot = 35
+  ORDER BY biddings.bid DESC
+ LIMIT 1)
+ UNION
+( SELECT users.first_name,
+    users.last_name,
+    users.company,
+    biddings.bid,
+    biddings.slot,
+    biddingstatus.biddingclosed
+   FROM users
+     JOIN biddings ON users.user_id = biddings.user_id
+     JOIN biddingstatus ON biddings.slot = biddingstatus.slot
+  WHERE biddings.slot = 36
+  ORDER BY biddings.bid DESC
+ LIMIT 1)
 
 
 )
-
-
