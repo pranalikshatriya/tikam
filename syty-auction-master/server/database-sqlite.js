@@ -1,7 +1,7 @@
 var path = require('path');
 var Promise = require('bluebird');
 var db = require('sqlite')
-var createUserStmt, submitBidStmt, slotQueryStmt, allSlotsQueryStmt, userQueryStmt, allUsersQueryStmt, recentBiddingsQueryStmt, nukeBiddingsStmt, nukeUsersStmt, toggleUserStmt, deleteBidStmt, userBiddingsQueryStmt, reportUserStmt;
+var createUserStmt, submitBidStmt, slotQueryStmt, allSlotsQueryStmt,allFrozenSlotsQueryStmt, userQueryStmt, allUsersQueryStmt, recentBiddingsQueryStmt, nukeBiddingsStmt, nukeUsersStmt, toggleUserStmt, deleteBidStmt, userBiddingsQueryStmt, reportUserStmt;
 
 exports.initialize = () =>
 	Promise
@@ -48,6 +48,27 @@ exports.initialize = () =>
 			.then(stmt => slotQueryStmt = stmt);
 
 			db.prepare(`
+			SELECT t.slot, t.bid, JSON_ARRAY(JSON_OBJECT('user_id', t.user_id, 'bid_id', t.bid_id, 'added_ts', t.added_ts, 'biddingclosed',s.biddingclosed)) AS bid_infos
+			FROM biddings t
+			WHERE t.bid =
+				(SELECT MAX(h.bid)
+				FROM biddings h
+				WHERE h.slot = ( SELECT s.slot 
+				FROM biddingstatus WHERE s.slot = 
+			 t.slot))
+			GROUP BY t.slot, t.bid
+				`)
+			.then(stmt => allSlotsQueryStmt = stmt);
+
+
+			db.prepare(`
+			SELECT t.slot, t.biddingclosed
+			FROM biddingstatus t
+				`)
+			.then(stmt => allFrozenSlotsQueryStmt = stmt);
+	
+
+		/*	db.prepare(`
 				SELECT t.slot, t.bid, JSON_ARRAY(JSON_OBJECT('user_id', t.user_id, 'bid_id', t.bid_id, 'added_ts', t.added_ts)) AS bid_infos
 				FROM biddings t
 				WHERE t.bid =
@@ -56,7 +77,7 @@ exports.initialize = () =>
 				    WHERE h.slot = t.slot)
 				GROUP BY t.slot, t.bid
 				`)
-			.then(stmt => allSlotsQueryStmt = stmt);
+			.then(stmt => allSlotsQueryStmt = stmt);*/
 
 			db.prepare(`
 				SELECT user_id, first_name, last_name, company,  permission
@@ -169,3 +190,6 @@ exports.getAllSlotsInfo = () =>
 	Promise.resolve(allSlotsQueryStmt.all());
 exports.getUserBiddings = userID =>
 	Promise.resolve(userBiddingsQueryStmt.all(userID));
+
+exports.getAllFrozenSlotsInfo = () =>
+Promise.resolve(allFrozenSlotsQueryStmt.all());

@@ -20,5 +20,7 @@ module.exports = {
 
 	getSlotInfo: database.getSlotInfo,
 	getAllSlotsInfo: database.getAllSlotsInfo,
-	getUserBiddings: database.getUserBiddings
+	getUserBiddings: database.getUserBiddings,
+
+	getAllFrozenSlotsInfo: database.getAllFrozenSlotsInfo,
 };

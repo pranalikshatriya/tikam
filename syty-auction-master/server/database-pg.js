@@ -39,6 +39,9 @@ let sqlGetUserBiddings = sql('summary/getUserBiddings.sql');
 let sqlCreateTableBiddingstatus = sql('bidding/createTableBiddingstatus.sql');
 let sqlCreateViewDisplayData = sql('bidding/createviewdisplaydata.sql');
 let sqlInsertDefaultData = sql('bidding/InsertintoBiddingStatus.sql');
+
+let sqlGetAllFrozenSlotsInfo = sql('summary/getAllFrozenSlotsInfo.sql');
+
 exports.initialize = () =>
 	Promise
 		.resolve()
@@ -74,3 +77,5 @@ exports.reportAllBiddings = () => db.any(sqlReportAllBiddings);
 exports.getSlotInfo = slot => db.oneOrNone(sqlGetSlotInfo, { slot: slot });
 exports.getAllSlotsInfo = () => db.any(sqlGetAllSlotsInfo);
 exports.getUserBiddings = (userID) => db.any(sqlGetUserBiddings, { userID: userID });
+
+exports.getAllFrozenSlotsInfo = () => db.any(sqlGetAllFrozenSlotsInfo);
