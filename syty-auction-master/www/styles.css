@@ -607,12 +607,20 @@ button, div {
   #ff8fb5 0px 0px 35px, 
   rgb(255, 0, 222) 0px 0px 40px;
 }
-.slot-bidder-name-0 {font-size: 1.2em;}
+/*.slot-bidder-name-0 {font-size: 1.2em;}
 .slot-bidder-name-1 {font-size: 1.2em;}
 .slot-bidder-name-2 {font-size: 1.0em;}
 .slot-bidder-name-3 {font-size: 0.8em;}
 .slot-bidder-name-4 {font-size: 0.6em;}
-.slot-bidder-name-5 {font-size: 0.45em;}
+.slot-bidder-name-5 {font-size: 0.45em;}*/
+
+.slot-bidder-name-0 {font-size: 1.2em;}
+.slot-bidder-name-1 {font-size: 1.2em;}
+.slot-bidder-name-2 {font-size: 1.2em;}
+.slot-bidder-name-3 {font-size: 1.2em;}
+.slot-bidder-name-4 {font-size: 1.2em;}
+.slot-bidder-name-5 {font-size: 1.2em;}
+
 .slot-bidder .slot-bidder-mul {
   display: block;
 }
@@ -715,11 +723,16 @@ button, div {
     margin-right: 0.1em;
     margin-left: 0.1em;
   }
-  .slot-bidder-name-1 {font-size: 1em;}
+  /*.slot-bidder-name-1 {font-size: 1em;}
   .slot-bidder-name-2 {font-size: 0.9em;}
   .slot-bidder-name-3 {font-size: 0.7em;}
   .slot-bidder-name-4 {font-size: 0.5em;}
-  .slot-bidder-name-5 {font-size: 0.4em;}
+  .slot-bidder-name-5 {font-size: 0.4em;}*/
+  .slot-bidder-name-1 {font-size: 1em;}
+  .slot-bidder-name-2 {font-size: 1em;}
+  .slot-bidder-name-3 {font-size: 1em;}
+  .slot-bidder-name-4 {font-size: 1em;}
+  .slot-bidder-name-5 {font-size: 1em;}
 }
 
 @media screen and (min-width: 40.5em) {
@@ -749,11 +762,16 @@ button, div {
     color: rgb(102,0,102);
     font-weight: bolder;
   }
-  .slot-bidder-name-1 {font-size: 1.4em;}
+ /* .slot-bidder-name-1 {font-size: 1.4em;}
   .slot-bidder-name-2 {font-size: 2.2em;}
   .slot-bidder-name-3 {font-size: 2.0em;}
   .slot-bidder-name-4 {font-size: 1.8em;}
-  .slot-bidder-name-5 {font-size: 1.6em;}
+  .slot-bidder-name-5 {font-size: 1.6em;}*/
+  .slot-bidder-name-1 {font-size: 1.4em;}
+  .slot-bidder-name-2 {font-size: 1.4em;}
+  .slot-bidder-name-3 {font-size: 1.4em;}
+  .slot-bidder-name-4 {font-size: 1.4em;}
+  .slot-bidder-name-5 {font-size: 1.4em;}
   .bidder-h {color: #ffde2f;}
 
   .slot-bidder .bidder-entry {
@@ -773,7 +791,7 @@ button, div {
     color: #ffffff
   }
   .block {
-    height: 52em;
+    height: 62em;
   }
 
   .container {

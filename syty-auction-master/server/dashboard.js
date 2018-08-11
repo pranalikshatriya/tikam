@@ -3,6 +3,7 @@ var utils = require('./utils.js');
 var database = require('./database.js');
 
 let allowBiddings = true;
+let slotArray = [];
 
 exports.setApp = (app, io) => {
     io.on('connection', socket => {
@@ -19,7 +20,7 @@ exports.setApp = (app, io) => {
             .then(snapshotJson => JSON.stringify(snapshotJson))
             .then(snapshotData => socket.emit('data', snapshotData));
     });
-
+      setInterval(getbiddingcloseddetails,1000);
     app.post('/submit', (request, response) => {
         if (!allowBiddings) {
             response.status(403).send('Bidding is not allowed at the moment');
@@ -149,6 +150,40 @@ exports.setApp = (app, io) => {
         if(bot) clearInterval(bot);
         response.send();
     });
+
+    function getbiddingcloseddetails(){
+      
+        database
+        .getAllFrozenSlotsInfo()
+        .then( function (x){
+            x.forEach(element => {
+                if(element.biddingclosed)
+                 { 
+                if (!slotArray.includes(element.slot))
+                     { slotArray.push(element.slot); } 
+                  buildSlotInfoUpdate(element.slot)
+                 .then(slotInfoUpdate => ({ slots: [slotInfoUpdate], events: [], isLiveUpdate: false }))
+                 .then(updateJson => JSON.stringify(updateJson))
+                 .then(update => io.sockets.emit('data', update));
+                }else{
+                 if(slotArray.includes(element.slot))
+                    {
+                         buildSlotInfoUpdate(element.slot)
+                        .then(slotInfoUpdate => ({ slots: [slotInfoUpdate], events: [], isLiveUpdate: false }))
+                        .then(updateJson => JSON.stringify(updateJson))
+                       .then(update => io.sockets.emit('data', update));
+
+                    }
+
+                }
+
+            });
+                  
+           
+        })
+            
+        
+    }
 };
 
 let buildSlotInfoSnapshot = () =>
